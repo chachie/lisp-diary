@@ -8,9 +8,19 @@
 (require 'lisp-diary)
 
 (ert-deftest test-get-date-at-days-offset ()
-  (let ((n 0))
-    (should (equal 0
-             (days-between (current-time-string) (get-date-at-days-offset 0))))))
+  (should (string-equal (format-time-string lisp-diary-date-format)
+                        (get-date-at-days-offset 0)))
+  (should (not
+           (string-equal (get-date-at-days-offset 40 "%m")
+                         (get-date-at-days-offset 0 "%m"))))
+  (should (not
+           (string-equal (get-date-at-days-offset -40 "%m")
+                         (get-date-at-days-offset 0 "%m"))))
+  (should (> (cl-parse-integer (get-date-at-days-offset 400 "%Y"))
+             (cl-parse-integer (get-date-at-days-offset 0 "%Y"))))
+  (should (< (cl-parse-integer (get-date-at-days-offset -400 "%Y"))
+             (cl-parse-integer (get-date-at-days-offset 0 "%Y")))))
+
 
 
 (provide 'lisp-diary-tests)

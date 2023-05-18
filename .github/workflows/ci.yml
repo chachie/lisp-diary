@@ -1,0 +1,14 @@
+name: test runs
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
+    - name: Setup Emacs
+      uses: purcell/setup-emacs@master
+      with:
+        version: '28.2'
+    - name: Run tests
+      run: 'emacs -batch -l ert -l lisp-diary-tests.el -f ert-run-tests-batch-and-exit'

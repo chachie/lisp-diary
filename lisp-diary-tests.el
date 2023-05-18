@@ -5,8 +5,7 @@
 ;;
 ;;; Code:
 (require 'ert)
-
-(load "lisp-diary.el")
+(require 'lisp-diary)
 
 (ert-deftest test-get-date-at-days-offset ()
   (let ((n 0))

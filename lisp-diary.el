@@ -137,7 +137,7 @@ Use `repeat' \\[repeat] to search forward again."
                                   "[^][]*" ,(string-join word-list "[^][]*")
                                   "[^][]*" ,closing-bracket))
                    )
-                 (search-words-permutations (string-split keywords " ")))
+                 (search-words-permutations (split-string keywords " ")))
                 pipe)))
     (if search (or (re-search-forward regex nil t)
                    (re-search-backward regex))

@@ -122,18 +122,27 @@ If new file, add initial content."
                 len))
       res)))
 
-(defun topic-search (keywords)
+(defun topic-search (search keywords)
   "Search forward for KEYWORDS in brackets.
+If SEARCH (with prefix), search forward and backward in buffer.
 Use `repeat' \\[repeat] to search forward again."
-  (interactive "sKeywords: ")
-  (occur
-   (string-join
-    (mapcar
-     (lambda (word-list)
-       (string-join `("\\[" "[^][]*" ,(string-join word-list "[^][]*")
-                      "[^][]*" "\\]"))
-       )
-     (search-words-permutations (string-split keywords " "))) "\\|")))
+  (interactive "P\nsKeywords: ")
+  (let* ((opening-bracket "\\[")
+         (closing-bracket "\\]")
+         (pipe "\\|")
+         (regex (string-join
+                (mapcar
+                 (lambda (word-list)
+                   (string-join `(,opening-bracket
+                                  "[^][]*" ,(string-join word-list "[^][]*")
+                                  "[^][]*" ,closing-bracket))
+                   )
+                 (search-words-permutations (string-split keywords " ")))
+                pipe)))
+    (if search (or (re-search-forward regex nil t)
+                   (re-search-backward regex))
+      (occur regex)
+      )))
 
 (provide 'lisp-diary)
 

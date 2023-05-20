@@ -11,15 +11,15 @@
 
 (defcustom lisp-diary-date-line-format ";; %s\n"
   "Format of comment line indicating the date."
-  :type 'file :group 'lisp-diary)
+  :type 'string :group 'lisp-diary)
 
 (defcustom lisp-diary-day-notes-template "\"\"\n"
   "Template for a day's notes."
-  :type 'file :group 'lisp-diary)
+  :type 'string :group 'lisp-diary)
 
 (defcustom lisp-diary-date-format "%a %b %d %Y"
   "Format of date in comment line."
-  :type 'file :group 'lisp-diary)
+  :type 'string :group 'lisp-diary)
 
 (defun get-date-at-days-offset (n &optional fmt)
   "Get string formatted day N days from today.

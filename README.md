@@ -13,7 +13,7 @@ A typical diary entry consists of three sections, in the following order:
   * a date
   * a note inside double quotation marks `"..."`
     * a note can be anything like a reminder to do something.
-    * placing the note in these quotation marks allows the note to be distinguishabled visually from the date line and other Lisp expressions.
+    * placing the note in these quotation marks allows it to be distinguishable visually from the date line and other Lisp expressions.
   * Lisp expressions
 
 ## Why use this format?
@@ -21,7 +21,7 @@ A typical diary entry consists of three sections, in the following order:
 By using a Lisp file for your diary notes in Emacs, you can:
 
   * define reference mathematical formulas, that can be run within the buffer.
-  * do quick calculations without reaching out to a different window (or minibuffer).
+  * do quick calculations without opening a different window.
   * leverage other existing functions defined in Emacs.
   * get Lisp editing facilities (Emacs Lisp major mode):
     * code indentation
@@ -34,18 +34,18 @@ By using a Lisp file for your diary notes in Emacs, you can:
 
 Let's assume you are planning to bake chocolate eclairs. You write down the recipe, which calls for 140 grams of flour. However, you need to make 4 times as much and you want the weight to be in ounces.
 
-> You can write down the Lisp code and evalute it right there to get the result without leaving your notes.
+*You can write down the Lisp code and evaluate it right there to get the result without leaving your notes.*
 
 You might also find out that you need to convert grams to ounces frequently.
 
-> You can define a function to reuse in difference places in the future.
+*You can define a function to reuse in difference places in the future.*
 
 
 ```elisp
 
 ;; Sat May 20 2023
 
-"Chocolate eclairs: 140g flour, 125ml milk, 4 eggs"
+"[baking] Chocolate eclairs: 140g flour, 125ml milk, 4 eggs"
 
 (* 4 (* 140 0.035274)) ; 19.75344
 
@@ -81,10 +81,10 @@ You might also find out that you need to convert grams to ounces frequently.
 
 # Tagging notes
 
-You can tag notes by writing a list of topics inside brackets. This make searching through the notes easier, using the *topic-search* command.
+You can tag notes by writing a list of topics inside brackets. This makes searching through the notes easier using the **M-x topic-search** command.
 
 For example, let's say you occasionally find nice articles to read. You can add a link to the article and tag it with `[article]` within your diary entry for the day.
-Later, you can review the list of articles simply by doing a *topic-search* with the word article. If you need to be more specific in your topic search, for example, looking only for coding related articles, then you can simply expand that in the tag `[article coding]`.
+Later, you can review the list of articles simply by doing a **M-x topic-search** with the word article. If you need to be more specific in your topic search, for example, looking only for coding related articles, then you can include that in the tag `[article coding]`.
 
 # Basic workflow: #
 

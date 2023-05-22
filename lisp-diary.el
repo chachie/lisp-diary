@@ -80,7 +80,7 @@ N must be a positive integer."
                      "Notes path unset. Choose notes path: "
                      (expand-file-name "~/notes/") nil
                                 nil "")))
-    (customize-set-variable 'lisp-diary-path notes-path)))
+    (customize-save-variable 'lisp-diary-path notes-path)))
 
 (defun todays-notes (filename)
   "Open notes in FILENAME and set location to today's date.

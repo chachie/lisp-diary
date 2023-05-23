@@ -1,6 +1,6 @@
 # lisp-diary: A simple flat file-formatted diary app.
 
-The goal of `lisp-diary` is to simplify writing diary entries so that you spend less time learning the tool, and more time writing your personal notes, or reminders and bits of information that have no home. One file for all your diary entries, with a simple format. `lisp-diary` is not meant to produce a nicely formatted diary, or one that includes charts and pictures. Other specialized tools are more appropriate for these. You can however place links in your diary entries to the documents produced by these other tools.
+The goal of `lisp-diary` is to simplify writing diary entries so that you spend less time learning a new tool, and more time writing your personal notes, or reminders and bits of information that have no home. This is achieved by using _one_ file with a simple format for _all_ your diary entries while leveraging your existing knowledge of Emacs. `lisp-diary` is not meant to produce a nicely formatted diary, or one that includes charts and pictures. Other specialized tools are more appropriate for these. You can however place links to the documents produced by these other tools within your diary entries.
 
 Basically, `lisp-diary` allows you to write your diary in a Lisp file, which the app manages through a set of simple commands. 
 
@@ -12,8 +12,7 @@ A typical diary entry consists of three sections, in the following order:
 
   * a date
   * a note inside double quotation marks `"..."`
-    * a note can be anything like a reminder to do something.
-    * placing the note in these quotation marks allows it to be distinguishable visually from the date line and other Lisp expressions.
+    * a note can be any text
   * Lisp expressions
 
 ## Why use this format?
@@ -34,11 +33,11 @@ By using a Lisp file for your diary in Emacs, you can:
 
 Let's assume you are planning to bake chocolate eclairs. You write down the recipe, which calls for 140 grams of flour. However, you need to make 4 times as much and you want the weight to be in ounces.
 
-*You can write down the Lisp code and evaluate it right there to get the result without leaving your diary.*
+*You can write down the Lisp code to compute the new weight, and evaluate it right there to get the result, all without leaving your diary.*
 
 You might also find out that you need to convert grams to ounces frequently.
 
-*You can define a function to reuse in difference places in the future.*
+*You can define a `grams-to-oz` function to reuse in difference places in the future.*
 
 
 ```elisp

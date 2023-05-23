@@ -89,7 +89,7 @@ Later, you can review the list of articles simply by doing a **M-x topic-search*
 # Basic workflow: #
 
   * Place the `lisp-diary.el` in your load path.
-  * **M-x todays-diary**
+  * **M-x todays-notes**
       * This command takes you to the your diary file _at today's date_.
       * If your diary file is not set, it will prompt you to choose it.
   * **M-x add-days**

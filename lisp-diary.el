@@ -82,7 +82,7 @@ N must be a positive integer."
                                 nil "")))
     (customize-save-variable 'lisp-diary-path diary-path)))
 
-(defun todays-diary (filename)
+(defun todays-notes (filename)
   "Open diary in FILENAME and set location to today's date.
 If new file, add initial content."
   (interactive (list (if (string= "" lisp-diary-path)

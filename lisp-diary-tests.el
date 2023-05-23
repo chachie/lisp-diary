@@ -1,7 +1,7 @@
 ;;; lisp-diary-tests.el --- Supporting tests
 ;;; Commentary:
 ;;
-;; Note taking, broken by days, with elisp as a major mode.
+;; Diary tests
 ;;
 ;;; Code:
 (require 'ert)

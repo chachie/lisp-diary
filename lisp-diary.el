@@ -1,12 +1,12 @@
-;;; lisp-diary.el --- Note taking w/ elisp -*- lexical-binding:t -*-
+;;; lisp-diary.el --- Diary w/ elisp -*- lexical-binding:t -*-
 ;;; Commentary:
 ;;
-;; Note taking, broken by days, with elisp as a major mode.
+;; Diary with elisp as a major mode.
 ;;
 ;;; Code:
 
 (defcustom lisp-diary-path ""
-  "Path to the notes files."
+  "Path to the diary file."
   :type 'file :group 'lisp-diary)
 
 (defcustom lisp-diary-date-line-format ";; %s\n"
@@ -53,17 +53,17 @@ DAY-NOTES-TEMPLATE overrides `lisp-diary-day-notes-template'."
            (next-days n start fmt))))
 
 (defun add-days (n)
-  "Add N days to notes file, starting from today.
+  "Add N days to diary file, starting from today.
 N must be a positive integer."
   (interactive "nNumber of days: ")
   (insert (next-days-formatted n 1)))
 
-(defun notes-skeleton (filename)
-  "Template for a notes file pointed at FILENAME."
-  (format ";;; %s --- notes w/ elisp -*- mode:emacs-lisp; -*-
+(defun diary-skeleton (filename)
+  "Template for a diary file pointed at FILENAME."
+  (format ";;; %s --- diary w/ elisp -*- mode:emacs-lisp; -*-
 ;;; Commentary:
 
-;; Note taking, broken by days, with elisp as a major mode.
+;; Diary with elisp as a major mode.
 
 ;;; Code:
 
@@ -74,24 +74,24 @@ N must be a positive integer."
 (next-days-formatted 30 1)
 (next-days-formatted 0 0 nil "\"TODO:\n* ...\"\n") filename))
 
-(defun new-notes-path-prompt ()
-  "Prompt for new notes path and save it."
-  (let ((notes-path (read-file-name
-                     "Notes path unset. Choose notes path: "
-                     (expand-file-name "~/notes/") nil
+(defun new-diary-path-prompt ()
+  "Prompt for new diary path and save it."
+  (let ((diary-path (read-file-name
+                     "Diary path unset. Choose diary path: "
+                     (expand-file-name "~/diary/") nil
                                 nil "")))
-    (customize-save-variable 'lisp-diary-path notes-path)))
+    (customize-save-variable 'lisp-diary-path diary-path)))
 
-(defun todays-notes (filename)
-  "Open notes in FILENAME and set location to today's date.
+(defun todays-diary (filename)
+  "Open diary in FILENAME and set location to today's date.
 If new file, add initial content."
   (interactive (list (if (string= "" lisp-diary-path)
-                         (new-notes-path-prompt)
+                         (new-diary-path-prompt)
                        lisp-diary-path)))
   (when filename
     (find-file (expand-file-name lisp-diary-path))
     (when (not (file-exists-p filename))
-      (insert (notes-skeleton
+      (insert (diary-skeleton
                (file-name-nondirectory lisp-diary-path))))
     (when
         (or (search-forward (get-date-at-days-offset 0) nil t)

@@ -1,8 +1,8 @@
 # lisp-diary: A simple flat file-formatted diary app.
 
-The goal of `lisp-diary` is to simplify writing diary entries so that you spend less time learning the tool, and more time writing your personal notes, reminders or bits of information that have no home. One file for all your diary entries, with a simple format. `lisp-diary` is not meant to produce nicely formatted or styled notes. Other specialized tools are more appropriate for these.
+The goal of `lisp-diary` is to simplify writing diary entries so that you spend less time learning the tool, and more time writing your personal notes, or reminders and bits of information that have no home. One file for all your diary entries, with a simple format. `lisp-diary` is not meant to produce a nicely formatted diary, or one that includes charts and pictures. Other specialized tools are more appropriate for these. You can however place links in your diary entries to the documents produced by these other tools.
 
-Basically, `lisp-diary` allows you to write diary notes in a Lisp file, which the app manages through a simple set of commands. 
+Basically, `lisp-diary` allows you to write your diary in a Lisp file, which the app manages through a set of simple commands. 
 
 A Lisp file is a file that contains code with valid Lisp syntax. The app defaults to the [Emacs Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp) dialect.
 
@@ -18,7 +18,7 @@ A typical diary entry consists of three sections, in the following order:
 
 ## Why use this format?
 
-By using a Lisp file for your diary notes in Emacs, you can:
+By using a Lisp file for your diary in Emacs, you can:
 
   * define reference mathematical formulas, that can be run within the buffer.
   * do quick calculations without opening a different window.
@@ -34,7 +34,7 @@ By using a Lisp file for your diary notes in Emacs, you can:
 
 Let's assume you are planning to bake chocolate eclairs. You write down the recipe, which calls for 140 grams of flour. However, you need to make 4 times as much and you want the weight to be in ounces.
 
-*You can write down the Lisp code and evaluate it right there to get the result without leaving your notes.*
+*You can write down the Lisp code and evaluate it right there to get the result without leaving your diary.*
 
 You might also find out that you need to convert grams to ounces frequently.
 
@@ -59,10 +59,10 @@ You might also find out that you need to convert grams to ounces frequently.
 
 
 ```elisp
-;;; notes.el --- notes w/ elisp -*- mode:emacs-lisp; -*-
+;;; diary.el --- diary w/ elisp -*- mode:emacs-lisp; -*-
 ;;; Commentary:
 
-;; Note taking, broken by days, with elisp as a major mode.
+;;  Diary with elisp as a major mode.
 
 ;;; Code:
 ;; Sun May 21 2023
@@ -76,12 +76,12 @@ You might also find out that you need to convert grams to ounces frequently.
 * ..."
 (+ 1 1)
 
-;;; notes.el ends here
+;;; diary.el ends here
 ```
 
-# Tagging notes
+# Tagging text in diary entries
 
-You can tag notes by writing a list of topics inside brackets. This makes searching through the notes easier using the **M-x topic-search** command.
+You can tag text in a diary entry by writing a list of topics inside brackets. This makes searching through the diary easier using the **M-x topic-search** command.
 
 For example, let's say you occasionally find nice articles to read. You can add a link to the article and tag it with `[article]` within your diary entry for the day.
 Later, you can review the list of articles simply by doing a **M-x topic-search** with the word article. If you need to be more specific in your topic search, for example, looking only for coding related articles, then you can include that in the tag `[article coding]`.
@@ -89,13 +89,13 @@ Later, you can review the list of articles simply by doing a **M-x topic-search*
 # Basic workflow: #
 
   * Place the `lisp-diary.el` in your load path.
-  * **M-x todays-notes**
-      * This command takes you to the your diary notes file _at today's date_.
-      * If your diary notes file is not set, it will prompt you to choose the desired location for the notes.
+  * **M-x todays-diary**
+      * This command takes you to the your diary file _at today's date_.
+      * If your diary file is not set, it will prompt you to choose it.
   * **M-x add-days**
     * Because the app doesn't automatically insert new blank diary entries into the file, use this command to add as many such entries as you need.
   * **M-x topic-search**
-    * This command will search notes you have tagged. Enter space delimited words to search for. The word order does not matter.
-    * The more words you add, the more refined the search is. Note that you should already have the notes tagged with all these words.
+    * This command will search text in your diary entries that you have tagged. Enter space delimited words to search for. The word order does not matter.
+    * The more words you add, the more refined the search is. Note that you should already have the text tagged with all these words.
     * With a prefix **C-u M-x topic-search**, search directly in the buffer, rather than getting the search results in a separate buffer.
       * use **C-x z** to repeat the topic-search command

@@ -37,7 +37,7 @@ Let's assume you are planning to bake chocolate eclairs. You write down the reci
 
 You might also find out that you need to convert grams to ounces frequently.
 
-*You can define a `grams-to-oz` function to reuse in difference places in the future.*
+*You can define a `grams-to-oz` function to reuse in different places.*
 
 
 ```elisp
@@ -82,7 +82,7 @@ You might also find out that you need to convert grams to ounces frequently.
 
 You can tag text in a diary entry by writing a list of topics inside brackets. This makes searching through the diary easier using the **M-x topic-search** command.
 
-For example, let's say you occasionally find nice articles to read. You can add a link to the article and tag it with `[article]` within your diary entry for the day.
+For example, let's say you occasionally find a nice article to read. You can add a link to the article and tag it with `[article]` within your diary entry for the day.
 Later, you can review the list of articles simply by doing a **M-x topic-search** with the word article. If you need to be more specific in your topic search, for example, looking only for coding related articles, then you can include that in the tag `[article coding]`.
 
 # Basic workflow: #

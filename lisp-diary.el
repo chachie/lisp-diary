@@ -122,11 +122,12 @@ If new file, add initial content."
                 len))
       res)))
 
-(defun topic-search (search keywords)
+(defun topic-search (nlines keywords)
   "Search forward for KEYWORDS in brackets.
-If SEARCH (with prefix), search forward and backward in buffer.
-Use `repeat' \\[repeat] to search forward again."
+With numberic prefix NLINES, display surrounding lines.
+See `occur for a description of the values taken by NLINES."
   (interactive "P\nsKeywords: ")
+  (todays-notes lisp-diary-path)
   (let* ((opening-bracket "\\[")
          (closing-bracket "\\]")
          (pipe "\\|")
@@ -139,10 +140,7 @@ Use `repeat' \\[repeat] to search forward again."
                    )
                  (search-words-permutations (split-string keywords " ")))
                 pipe)))
-    (if search (or (re-search-forward regex nil t)
-                   (re-search-backward regex))
-      (occur regex)
-      )))
+    (occur regex nlines)))
 
 (provide 'lisp-diary)
 

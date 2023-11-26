@@ -122,12 +122,8 @@ If new file, add initial content."
                 len))
       res)))
 
-(defun topic-search (nlines keywords)
-  "Search forward for KEYWORDS in brackets.
-With numberic prefix NLINES, display surrounding lines.
-See `occur for a description of the values taken by NLINES."
-  (interactive "P\nsKeywords: ")
-  (todays-notes lisp-diary-path)
+(defun topic-search-helper (nlines keywords)
+  "See `topic-search for a description of NLINES and KEYWORDS params."
   (let* ((opening-bracket "\\[")
          (closing-bracket "\\]")
          (pipe "\\|")
@@ -141,6 +137,14 @@ See `occur for a description of the values taken by NLINES."
                  (search-words-permutations (split-string keywords " ")))
                 pipe)))
     (occur regex nlines)))
+
+(defun topic-search (nlines keywords)
+  "Search forward for KEYWORDS in brackets.
+With numberic prefix NLINES, display surrounding lines.
+See `occur for a description of the values taken by NLINES."
+  (interactive "P\nsKeywords: ")
+  (when lisp-diary-path (todays-notes lisp-diary-path))
+  (topic-search-helper nlines keywords))
 
 (provide 'lisp-diary)
 

@@ -56,15 +56,16 @@
     (should (= 24 (length r))))
   )
 
-(ert-deftest test-topic-search ()
+(ert-deftest test-topic-search-helper ()
   (should
-   (eq 5
-       (with-temp-buffer
+   (< 0
+      (with-temp-buffer
          (mapc (lambda (n) (insert (format "[topic%sa topic%sb] abc %s %s\n"
                                            n (1+ n) n (1+ n))))
                (number-sequence 1 100))
-         (topic-search t "topic6b topic5a")
-         (line-number-at-pos)
+         (topic-search-helper 0 "topic6b topic5a")
+         (switch-to-buffer "*Occur*")
+         (search-forward "abc 5 6")
          ))))
 
 (provide 'lisp-diary-tests)
